@@ -30,19 +30,19 @@ import org.xml.sax.SAXException;
 
 public class ChatAnonymizer {
 
-    public static InputStream anonymizeChat(InputStream input) throws SAXException, IOException, ParserConfigurationException, XPathExpressionException, TransformerFactoryConfigurationError, TransformerException {
+    public static InputStream anonymizeChat(InputStream input)
+            throws SAXException, IOException, ParserConfigurationException, XPathExpressionException,
+            TransformerFactoryConfigurationError, TransformerException {
 
         // Map to hold anonymized person names
         Map<String, Integer> persons = new HashMap<>();
 
         // Read XML document from input stream
-        Document doc = DocumentBuilderFactory.newInstance()
-                .newDocumentBuilder().parse(new InputSource(input));
+        Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new InputSource(input));
 
         // Locate nodes in XML document containing names
         XPath xpath = XPathFactory.newInstance().newXPath();
-        NodeList nodes = (NodeList) xpath.evaluate("/popcorn/chattimeline",
-                doc, XPathConstants.NODESET);
+        NodeList nodes = (NodeList) xpath.evaluate("/popcorn/chattimeline", doc, XPathConstants.NODESET);
 
         // Replace names in chat timeline
         for (int idx = 0; idx < nodes.getLength(); idx++) {

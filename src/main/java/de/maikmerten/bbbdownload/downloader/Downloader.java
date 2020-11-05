@@ -24,23 +24,10 @@ public class Downloader {
     private boolean skipChat;
     private boolean anonymizeChat;
 
-    private String[] resources = {
-        "captions.json",
-        "cursor.xml",
-        "deskshare.xml",
-        "shapes.svg",
-        "metadata.xml",
-        "panzooms.xml",
-        "presentation_text.json",
-        "slides_new.xml",
-        "audio/audio.ogg",
-        "audio/audio.webm",
-        "video/webcams.webm",
-        "video/webcams.mp4",
-        "presentation/deskshare.png",
-        "deskshare/deskshare.webm",
-        "deskshare/deskshare.mp4"
-    };
+    private String[] resources = { "captions.json", "cursor.xml", "deskshare.xml", "shapes.svg", "metadata.xml",
+            "panzooms.xml", "presentation_text.json", "slides_new.xml", "audio/audio.ogg", "audio/audio.webm",
+            "video/webcams.webm", "video/webcams.mp4", "presentation/deskshare.png", "deskshare/deskshare.webm",
+            "deskshare/deskshare.mp4" };
 
     public Downloader(String playerURL, boolean skipChat, boolean anonymizeChat) {
         this.baseURL = getBaseURL(playerURL);
@@ -100,7 +87,7 @@ public class Downloader {
         boolean isShapes = zipfilename.equals("shapes.svg");
         boolean isChat = zipfilename.equals("slides_new.xml");
 
-        zipfilename = "presentation/" + recId + "/" + zipfilename;
+        zipfilename = "presentation/" + recId + "/" + zipfilename + "123";
 
         if (skipChat && isChat) {
             String popcornString = "<?xml version=\"1.0\"?>\n<popcorn>\n</popcorn>";
@@ -175,7 +162,8 @@ public class Downloader {
             zentry = zis.getNextEntry();
         }
 
-        String htmlcontent = "<html><meta http-equiv='refresh' content='0; URL=./playback/presentation/2.0/playback.html?meetingId=" + recId + "'></html>";
+        String htmlcontent = "<html><meta http-equiv='refresh' content='0; URL=./playback/presentation/2.0/playback.html?meetingId="
+                + recId + "'></html>";
         zos.putNextEntry(new ZipEntry("index.html"));
         zos.write(htmlcontent.getBytes("utf8"));
 
