@@ -87,7 +87,7 @@ public class Downloader {
         boolean isShapes = zipfilename.equals("shapes.svg");
         boolean isChat = zipfilename.equals("slides_new.xml");
 
-        zipfilename = "presentation/" + recId + "/" + zipfilename + "123";
+        zipfilename = "presentation/" + recId + "/" + zipfilename;
 
         if (skipChat && isChat) {
             String popcornString = "<?xml version=\"1.0\"?>\n<popcorn>\n</popcorn>";
